@@ -1,7 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 const path = require("path");
 const app = express();
+
+// Dotenv
+dotenv.config({ path: "./config.env" });
 
 // Set up EJS as the view engine
 app.set("views", path.join(__dirname, "views"));
@@ -46,7 +50,8 @@ app.get("/delete/:id", (req, res) => {
 	res.redirect("/");
 });
 
+const Port = 3000 || process.env.PORT;
 // Start the server
-app.listen(3000, () => {
+app.listen(Port, () => {
 	console.log("Server started on port 3000");
 });
